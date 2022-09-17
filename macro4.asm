@@ -1,0 +1,58 @@
+inicia MACRO
+	mov ax, seg @data
+	mov ds, ax
+ENDM
+salto MACRO
+    mov ah, 02h
+    mov dx, 010
+    int 21h
+ENDM
+mover MACRO y, x
+	mov ah,02h 
+	mov dh, y ; mover para la fila
+	mov dl, x ; mover para la columna
+	int 10h
+ENDM
+
+capturaVal MACRO v
+	mov ah, 3fh
+	mov bx, 00
+	mov cx, 50
+	mov dx, offset [v]
+	int 21h
+ENDM
+opciones MACRO
+	cmp res, '1'
+	je c1
+	cmp res, '2'
+	je c2
+	cmp res, '3'
+	je c3
+	cmp res, '4'
+	je c4
+	cmp res, '5'
+	je c5
+	cmp res, '6'
+	je c6
+	cmp res, '7'
+	je c7	
+	cmp res, '8'
+	je c8	
+	cmp res, '9'
+	je c9
+	cmp res, '0'
+	je c10
+	cmp res, 27
+	je salir
+ENDM
+espacio MACRO 
+	mov ah, 02h 
+	mov dx, 000 
+	int 21h
+ENDM
+opcionesS MACRO
+	cmp res, '1'
+	je menu
+	cmp res, '0'
+	je salir
+ENDM
